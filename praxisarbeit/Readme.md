@@ -1,35 +1,35 @@
 # Praxisarbeit LB1
 
-In einer Firma möchte man ganz einfach neue Mitarbeiter auf einem System erfassen können. Dazu möchte der Unix-Verantwortliche ein Skript haben welches aufgrund eines Files neue User erfasst und deren Unix-Umgebung (Home-Directory) einrichtet. Und ein Backup skript macht welches die Home-Directories der User sichert.
+In einer Firma möchte man ganz einfach neue Mitarbeiter auf einem System erfassen können. Dazu möchte der Unix-Verantwortliche ein Skript haben, welches aufgrund eines Files neue User erfasst und deren Unix-Umgebung (Home-Directory) einrichtet. Er möchte auch ein Backupskript, welches die Home-Directories der User sichert.
 
 ##Auftrag
 Erstellen sie 2 Skripte die folgende Aufgaben erfüllen
 
 ### Skript 1 
-Skript zum automatischen erstellen von Unix-Usern und default passwort setzen, welches beim ersten login geändert werden muss. Es sollen nur nicht existierende User erstellt werden. User-Home-Verzeichnis mit Skeleton-Template-Umgebung einrichten. Es sollen keine existierenden Dateien überschrieben werden.
+Skript zum automatischen erstellen von Unix-Usern und zum default passwort setzen, welches beim ersten login geändert werden muss. Es sollen nur nicht existierende User erstellt werden. Es soll User-Home-Verzeichnisse mit Skeleton-Template-Umgebung einrichten. Es sollen keine existierenden Dateien überschrieben werden.
 #### Muss-Kritierien
 * Es soll anhand von einem Input file in welchem folgende Angaben der zu erstellenden User erfasst sind User erstellen: 
 ```
 <username> <groupname> <vorname nachname>
 ```
 
-* Es soll überprüfen ob die Gruppe eine der Gruppen ist, die im Skript 2 auch gesichert werden. Ansonsten soll eine Warnung ausgegeben werden, dass das Userhome nicht gesichert wird.
-* Es soll prüfen, ob die Gruppe mit dem <groupname> existiert, falls nicht eine Warnung ausgeben.
-* Es soll ein konfigurierbares default passwort setzen, welches beim ersten login geändert werden muss
-* Es soll je nach Gruppe anhand einer anderer Skeleton-Template-Umgebung das User-Home-Verzeichnis einrichten
+* Es soll überprüfen ob die Gruppe eine der Gruppen ist, die im Skript 2 auch gesichert werden. Ansonsten soll eine Warnung ausgegeben werden, dass das User-Home nicht gesichert wird.
+* Es soll prüfen, ob die Gruppe mit dem <groupname> existiert, falls nicht eine Warnung ausgeben und nichts tun.
+* Es soll ein konfigurierbares default passwort setzen, welches beim ersten login geändert werden muss.
+* Es soll je nach Gruppe anhand einer Gruppenspezifischen Skeleton-Template-Umgebung das User-Home-Verzeichnis einrichten.
 * Es soll eine Warnung ausgeben, falls der User schon existiert und nichts weiter tun.
 
 #### Kann-Kriterien
-* Es soll eine neue Gruppe anlegen falls die Gruppe noch nicht existiert
-* Falls der User existiert und das User-Home-Verzeichnis nicht soll es mit dir Skeleton-Template-Umgebung erstellt werden.
-* Es soll ein logfile mit einem einheitlichen Format geschrieben werden.
+* Es soll eine neue Gruppe anlegen falls die Gruppe noch nicht existiert.
+* Falls der User existiert und das User-Home-Verzeichnis nicht, soll es mit der richtigen Skeleton-Template-Umgebung erstellt werden.
+* Es soll ein Logfile mit einem einheitlichen Format geschrieben werden.
 * ...
 
 ### Skript 2 
-Backup von allen User-Homes welche bestimmten Gruppen zugeordnet sind. Es sollen nur eine gewisse Anzahl von Backups behalten werden und das Backup Script soll per cronjob täglich ausgeführt werden. Es soll das Backup aller User-Homes in einem tar-archive mit einem konfigurierbaren Namen in einen konfigurierbaren Ort speichern.
+Backup von allen User-Homes welche bestimmten Gruppen zugeordnet sind. Es sollen nur eine gewisse Anzahl von Backups behalten werden und das Backup Skript soll per Cronjob täglich ausgeführt werden. Es soll das Backup aller User-Homes in einem tar-archive mit einem konfigurierbaren Namen an einem konfigurierbaren Ort speichern.
 
 #### Muss-Kriterien
-* Die Gruppen für welche User-Home-Verzeichnisse gesichert werden sollen müssen in einen File gespeichert sein. Das Format des Files:
+* Die Gruppen für welche User-Home-Verzeichnisse gesichert werden sollen, müssen in einen Konfig-File gespeichert sein. Das Format des Files:
 
 	```
 	<groupname1>
@@ -37,14 +37,14 @@ Backup von allen User-Homes welche bestimmten Gruppen zugeordnet sind. Es sollen
 	...
 	```
 * Es soll überprüft werden ob die zu sicherende Gruppe existiert. Ansonsten soll eine Warnung ausgegeben werden.
-* Es soll frei konfigurierbar sein wieviele Backups aufbewahrt werden sollen
-* Es soll frei konfigurierbar sein in welchen Verzeichnis die Backups gespeichert werden sollen
-* Es soll frei konfigurierbar sein wie die Backup files heissen sollen.
-* Es soll nur ein tar-Archive pro Backup von allen User-Home-Verzeichnissen erstellt werden. (D.h. alle User-Home-Verzeichnisse in einem tar file)
+* Es soll frei konfigurierbar sein, wieviele Backups aufbewahrt werden sollen.
+* Es soll frei konfigurierbar sein, in welchem Verzeichnis die Backups gespeichert werden sollen.
+* Es soll frei konfigurierbar sein, wie die Backup files heissen sollen, d.h. das Prefix des Filenamens soll frei wählbar sein.
+* Es soll nur ein tar-Archive pro Backup von allen User-Home-Verzeichnissen zusammen erstellt werden. (D.h. alle User-Home-Verzeichnisse in einem tar file)
 
 #### Kann-Kriterien
-* Es soll möglich sein in jedem User-Home-Verzeichnis gewisse verzeichnisse mit samt Inhalt von der Sicherung auszunehmen, d.h. nicht zu sicheren. 
-* Es soll ein logfile mit einem einheitlichen Format geschrieben werden.
+* Es soll möglich sein in jedem User-Home-Verzeichnis, gewisse Verzeichnisse mit samt Inhalt von der Sicherung auszunehmen, d.h. nicht zu sicheren. 
+* Es soll ein Logfile mit einem einheitlichen Format geschrieben werden.
 * ...
 
 
