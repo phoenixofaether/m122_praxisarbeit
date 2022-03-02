@@ -16,8 +16,8 @@ Skript zum automatischen erstellen von Unix-Usern und default passwort setzen, w
 * Es soll überprüfen ob die Gruppe eine der Gruppen ist, die im Skript 2 auch gesichert werden. Ansonsten soll eine Warnung ausgegeben werden, dass das Userhome nicht gesichert wird.
 * Es soll prüfen, ob die Gruppe mit dem <groupname> existiert, falls nicht eine Warnung ausgeben.
 * Es soll ein konfigurierbares default passwort setzen, welches beim ersten login geändert werden muss
-* Es soll je nach Gruppe einer anderer Skeleton-Template-Umgebung das User-Home-Verzeichnis einrichten
-* Es soll eine Warnung ausgeben falls der User schon existiert und nichts weiter tun.
+* Es soll je nach Gruppe anhand einer anderer Skeleton-Template-Umgebung das User-Home-Verzeichnis einrichten
+* Es soll eine Warnung ausgeben, falls der User schon existiert und nichts weiter tun.
 
 #### Kann-Kriterien
 * Es soll eine neue Gruppe anlegen falls die Gruppe noch nicht existiert
@@ -40,7 +40,7 @@ Backup von allen User-Homes welche bestimmten Gruppen zugeordnet sind. Es sollen
 * Es soll frei konfigurierbar sein wieviele Backups aufbewahrt werden sollen
 * Es soll frei konfigurierbar sein in welchen Verzeichnis die Backups gespeichert werden sollen
 * Es soll frei konfigurierbar sein wie die Backup files heissen sollen.
-* Es soll nur ein tar-Archive pro Backup von allen User-Home-Verzeichnissen erstellt werden. (D.h. alle User-Home-Verzeichnisse in eine tar file)
+* Es soll nur ein tar-Archive pro Backup von allen User-Home-Verzeichnissen erstellt werden. (D.h. alle User-Home-Verzeichnisse in einem tar file)
 
 #### Kann-Kriterien
 * Es soll möglich sein in jedem User-Home-Verzeichnis gewisse verzeichnisse mit samt Inhalt von der Sicherung auszunehmen, d.h. nicht zu sicheren. 
