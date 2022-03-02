@@ -8,7 +8,7 @@ TODO: In 2-3 Sätzen beschreiben was die Skripte grundsaetzlich tun.
 
 ### Installation
 
-TODO: Wie ist das skript zu installieren. (z.B. apt-get install ... oder tar xvf .... oder ...)
+TODO: Wie ist das Skript zu installieren. (z.B. apt-get install ... oder tar xvf .... oder ...)
 
 ### Konfiguration
 
