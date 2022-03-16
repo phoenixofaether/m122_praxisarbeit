@@ -1,8 +1,10 @@
 # Praxisarbeit LB1
 
+[[_TOC_]]
+
 In einer Firma möchte man ganz einfach neue Mitarbeiter auf einem System erfassen können. Dazu möchte der Unix-Verantwortliche ein Skript haben, welches aufgrund eines Files neue User erfasst und deren Unix-Umgebung (Home-Directory) einrichtet. Er möchte auch ein Backupskript, welches die Home-Directories der User sichert.
 
-##Auftrag
+## Auftrag
 Erstellen sie 2 Skripte die folgende Aufgaben erfüllen
 
 ### Skript 1 
@@ -14,7 +16,7 @@ Skript zum automatischen erstellen von Unix-Usern und zum default passwort setze
 ```
 
 * Es soll überprüfen ob die Gruppe eine der Gruppen ist, die im Skript 2 auch gesichert werden. Ansonsten soll eine Warnung ausgegeben werden, dass das User-Home nicht gesichert wird.
-* Es soll prüfen, ob die Gruppe mit dem <groupname> existiert, falls nicht eine Warnung ausgeben und nichts tun.
+* Es soll prüfen, ob die Gruppe mit dem `<groupname>` existiert, falls nicht eine Warnung ausgeben und nichts tun.
 * Es soll ein konfigurierbares default passwort setzen, welches beim ersten login geändert werden muss.
 * Es soll je nach Gruppe anhand einer Gruppenspezifischen Skeleton-Template-Umgebung das User-Home-Verzeichnis einrichten.
 * Es soll eine Warnung ausgeben, falls der User schon existiert und nichts weiter tun.
