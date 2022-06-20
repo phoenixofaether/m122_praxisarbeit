@@ -1,1 +1,1 @@
-argument -config_path -log_path -password -create_group
+argument -config_path -password -log_path -create_group

@@ -1,0 +1,47 @@
+#!/bin/bash
+# A Bash script, that creates users and groups based on parameters and a config file
+# $config_path - type string - path to your configuration file
+# $password - type string - default password for the users, ENCRYPTED (with crypt())
+# $log_path - type string - path where the log should be saved as
+# $create_group - type boolean - 1 if the script should create non existing groups or 2 output a warning
+
+if [ ! -f $config_path ]; then
+	echo 'Error: ' $config_path ' doesn't exist.'	
+fi
+
+if [ $create_group != 2]; then
+	$create_group = 1
+fi
+	
+while read line; do
+	$pieces = $INPUT| cut -d' '
+	$username = "($pieces -f 1)"
+	$groupname = "($pieces -f 2)"
+	$fullName = "($pieces -f 3)"
+
+	# check if group exists
+	if [! grep -q "$groupname" /etc/group]; then
+		if "$create_group" == "2"; then
+			echo 'Warning: group "' $groupname '" doesn't exist.'
+			continue
+		fi
+		groupadd -f $groupname
+	else
+		echo 'test if group is backuped'
+	fi
+	
+	# check if user exists
+	if id "$username" &>/dev/null; then
+		echo 'Warning: User ' "$username" ' already exists.'
+		homedir="$(getent passwd user | cut -d: -f6)"; 
+		if [! -d "$homedir" ]; then
+			mkdir /users/$username
+			cp -r /etc/skel /users/$username
+			chown -R $username:$groupname
+		fi
+	else
+		useradd -g $groupname -k /etc/skel -m -p $password $username
+	fi
+		
+
+done < $config_path
