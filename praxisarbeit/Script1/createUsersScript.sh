@@ -35,6 +35,10 @@ fi
 	
 . "$config_path"
 
+if [ -z "$log_path" ]; then
+	touch $log_path
+fi
+
 log()
 {
   echo "$1"
