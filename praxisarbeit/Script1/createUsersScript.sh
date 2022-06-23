@@ -1,7 +1,11 @@
 #!/bin/bash
 # A Bash script, that creates users and groups based on a config file and a file that contains a list of users
 # $config_path - type string - path to your configuration file
-#	- 
+#	- password - type string - encrypted default password
+#	- log_path - type string - path to log file
+#	- create_group - type string - 1 if non existing groups should be created or 0 if 
+#	- backup_file - type string - path to where it is defined which groups are backuped
+#	- skeleton_dir - type string - path to where groupspecific skeletonfolders are safed
 # $users_list_path - type string - path to a file that contains the users that should be created
 
 set -xv
@@ -38,7 +42,8 @@ log()
 }
 
 cat $users_list_path | while read username groupname fullname; do
-	sekeltonDir = "/etc/skel"
+	$skeletonDir
+	skeletonDir="/etc/skel"
 	# check if group exists
 	if ! grep -q $groupname /etc/group; then
 		if [ "$create_group" -eq "0" ]; then
@@ -46,14 +51,16 @@ cat $users_list_path | while read username groupname fullname; do
 			continue
 		fi
 		groupadd -f $groupname
-	else
-		if [ ! grep -w $backup_file $groupname ]; then
-			log 'Warning: Home directory of $groupname isnt beeing updated'
-		fi
+	#check if groupname is beeing backuped
+	#else
+		
+		#if [ ! grep -Fxq $backup_file $groupname ]; then
+		#	log 'Warning: Home directory of $groupname isnt beeing updated'
+		#fi
 	fi
 
 	if [ -f $skeleton_dir$groupname ]; then 
-		sekeltonDir = $skeleton_dir$groupname
+		skeletonDir=$skeleton_dir$groupname
 	fi
 	
 	# check if user exists
@@ -62,10 +69,10 @@ cat $users_list_path | while read username groupname fullname; do
 		homedir="$(getent passwd user | cut -d: -f6)";
 		if [ ! -d "$homedir" ]; then
 			mkdir /users/$username
-			cp $sekeltonDir /users/$username
+			cp $skeletonDir /users/$username
 		fi
 	else
-		useradd -g $groupname -c $fullname -k $sekeltonDir -m -p $password $username
+		useradd -m -g $groupname -c $fullname -k $skeletonDir -p $password $username
 		passwd --expire $username
 	fi
 		
