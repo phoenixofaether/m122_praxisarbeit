@@ -1,28 +1,48 @@
 # Projekt Dokumentation
 
 ## Lösungsdesign
+
 Anhand der Analyse wurde folgendes Lösungsdesign entworfen.
 
 ### Parameter
 
-| Parametername | Description                                                                                            | Typ     | Default |
-| ------------- | ------------------------------------------------------------------------------------------------------ | ------- | ------- |
-| config_path   | Pfad zu deinem Konfigurationsfile                                                                      | string  |         |
-| password      | Default Passwort für Erstellte User                                                                    | string  | root    |
-| log_path      | Pfad wo die Logdatei abgespeichert werden soll                                                         | string  | default |
-| create_group  | 1 falls nicht Existierende Gruppen erstellt werden sollen, 0 falls eine Warnung ausgegeben werden soll | boolean | 0       |
+| Parametername   | Erklärung                         | Typ    | Standart |
+| --------------- | --------------------------------- | ------ | -------- |
+| config_path     | Pfad zu deinem Konfigurationsfile | string |          |
+| users_list_path | Pfad zu File mit Liste von Usern  | string | root     |
 
 ### Ablauf der Automation
 
-TODO: Hier kommt ihr UML-Activity Diagramm
+Siehe Activity Diagramm.
 
 ### Format von Konfigurationsdatei
-Dateiname: Name.conf
+
+Dateiname: config.\*
 
 ```
 <username> <groupname> <vorname nachname>
 ```
 
+Dateiname: createUsersScript.conf
+
+```
+password=
+log_path=
+create_group=
+backup_file=
+skeleton_dir=
+```
+
+#### Konfigurationsmöglichkeiten
+
+| Konfigurationsname | Erklärung                                                                | Typ    |
+| ------------------ | ------------------------------------------------------------------------ | ------ |
+| password           | Standartpasswort für User                                                | string |
+| log_path           | Pfad wo Log-File abgespeichert werden soll                               | string |
+| create_group       | 1 falls nicht-existierende Gruppen erstellt werden sollen, 0 falls nicht | string |
+| backup_file        | Pfad zu File wo Backupgruppen definiert werden                           | string |
+| skeleton_dir       | Pfad zu wo Gruppenspezifische Skeleton-Verzeichnisse sind                | string |
+
 ## Abgrenzungen zum Lösungsdesign
 
-TODO: Nachdem das Programm verwirklicht wurde, hier die Unterschiede von der Implementation zum Lösungsdesign beschreiben (was wurde anders gemacht, was wurde nicht gemacht, was wurde zusaetzlich gemacht)
+Das Programm entspricht grösstenteils dem Lösungsdesign. Die einzigen Unterschiede liegen darin, dass anstatt Parameter eine Konfigurationsdatei verwendet wird.
