@@ -35,8 +35,8 @@ fi
 	
 . "$config_path"
 
-if [ -z "$log_path" ]; then
-	touch $log_path
+if [ ! -z "$log_path" ]; then
+	cat > $log_path
 fi
 
 log()
@@ -46,7 +46,6 @@ log()
 }
 
 cat $users_list_path | while read username groupname fullname; do
-	$skeletonDir
 	skeletonDir="/etc/skel"
 	# check if group exists
 	if ! grep -q $groupname /etc/group; then
@@ -72,7 +71,7 @@ cat $users_list_path | while read username groupname fullname; do
 		log 'Warning: User "$username" already exists.'
 		homedir="$(getent passwd user | cut -d: -f6)";
 		if [ ! -d "$homedir" ]; then
-			mkdir /users/$username
+			mkdir -p /users/$username
 			cp $skeletonDir /users/$username
 		fi
 	else
